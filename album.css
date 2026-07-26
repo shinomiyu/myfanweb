@@ -1,0 +1,952 @@
+@charset "utf-8";
+
+/*==================================================
+  1. RESET
+==================================================*/
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    position:relative;
+}
+
+/*==================================================
+  2. BACKGROUND
+==================================================*/
+
+.background{
+    position:fixed;
+    inset:0;
+    background:url("../img/background.png") center/cover no-repeat;
+    z-index:-10;
+}
+
+.background::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:
+        radial-gradient(rgba(0,0,0,.08) 1px, transparent 1px);
+    background-size:18px 18px;
+    opacity:.35;
+}
+
+/*==================================================
+  3. HEADER
+==================================================*/
+
+.logo-back{
+
+    position:absolute;
+    top:15px;
+    left:0;
+
+    width:130px;
+
+    filter:brightness(0);
+
+    transition:.3s;
+
+    z-index:100;
+}
+
+.logo-back:hover{
+
+    transform:scale(1.05);
+
+}
+
+.logo-menu{
+
+    position:absolute;
+    top:25px;
+    right:35px;
+
+    width:140px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    animation:flip 3s linear infinite;
+
+    z-index:300;
+}
+
+.logo-menu:hover{
+
+    transform:scale(1.05);
+
+}
+
+/*==================================================
+  4. MENU OVERLAY
+==================================================*/
+
+#menuOverlay{
+
+    position:fixed;
+    inset:0;
+
+    background:rgba(75,77,124,.95);
+
+    display:none;
+
+    overflow:hidden;
+
+    z-index:250;
+}
+
+.menu-content{
+
+    width:100%;
+    text-align:center;
+
+    padding-top:100px;
+
+    position:relative;
+}
+
+.menu-content>a,
+.drop-btn{
+
+    display:block;
+
+    margin:12px 0;
+
+    text-decoration:none;
+
+    color:#fff;
+
+    font-size:40px;
+
+    font-family:'Fredoka',sans-serif;
+}
+
+/* submenu */
+
+.submenu{
+
+    display:none;
+
+}
+
+.dropdown.active .submenu{
+
+    display:block;
+
+}
+
+.submenu a{
+
+    display:block;
+
+    color:#ead9ff;
+
+    text-decoration:none;
+
+    font-size:28px;
+
+    margin:8px 0;
+
+}
+
+/* members */
+
+.member-submenu{
+
+    display:none;
+
+    justify-content:center;
+
+    gap:12px;
+
+    margin-top:15px;
+}
+
+.dropdown.active .member-submenu{
+
+    display:flex;
+
+}
+
+.member-submenu img{
+
+    width:110px;
+    height:160px;
+
+    object-fit:cover;
+
+    border-radius:12px;
+
+    transition:.3s;
+}
+
+.member-submenu img:hover{
+
+    transform:translateY(-6px);
+
+}
+
+/* mascot */
+
+.menu-MMMM{
+
+
+    position:absolute;
+
+
+    left:50%;
+
+
+    bottom:30px;
+
+
+    transform:translateX(-50%);
+
+
+    width:730px;
+
+
+    z-index:250;
+
+
+}
+
+/*==================================================
+  5. AUDIO BUTTON
+==================================================*/
+
+#audioBtn{
+
+    position:fixed;
+
+    left:35px;
+    bottom:60px;
+
+    width:50px;
+    height:50px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#7f5dd8;
+
+    color:#fff;
+
+    font-size:20px;
+
+    cursor:pointer;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
+
+    transition:.3s;
+
+    z-index:500;
+}
+
+#audioBtn:hover{
+
+    background:#6446d8;
+
+    transform:scale(1.08);
+}
+
+/*==================================================
+  6. MAIN WRAPPER
+==================================================*/
+
+.wrapper{
+
+    position:relative;
+
+    width:100%;
+    height:100vh;
+
+    max-width:1920px;
+
+    margin:auto;
+
+    animation:pageFade .8s;
+}
+
+/*==================================================
+  7. ALBUM
+==================================================*/
+
+.album{
+
+    position:absolute;
+
+    width:180px;
+
+    cursor:pointer;
+
+    overflow:hidden;
+
+    border-radius:6px;
+
+    filter:drop-shadow(0 15px 18px rgba(0,0,0,.15));
+
+    transition:
+        transform .35s,
+        filter .35s,
+        box-shadow .35s;
+
+    opacity:0;
+
+}
+
+.album img{
+
+    width:100%;
+
+    display:block;
+
+    transition:.45s;
+
+}
+
+.album a{
+
+    display:block;
+
+    width:100%;
+    height:100%;
+
+}
+
+.album:hover{
+
+    transform:translateY(-12px) scale(1.05);
+
+    box-shadow:0 20px 35px rgba(0,0,0,.25);
+
+    z-index:50;
+
+}
+
+.album:hover img{
+
+    transform:scale(1.08);
+
+    filter:brightness(1.08);
+
+}
+
+/*==================================================
+  8. ALBUM POSITION
+==================================================*/
+
+/* ---------- FIRST ROW ---------- */
+
+.a1{
+
+    top:180px;
+    left:40px;
+
+}
+
+.a2{
+
+    top:180px;
+    left:250px;
+
+}
+
+.a3{
+
+    top:180px;
+    left:460px;
+
+}
+
+.a4{
+
+    top:180px;
+    left:800px;
+
+}
+
+.a5{
+
+    top:180px;
+    left:1010px;
+
+}
+
+/* ---------- SECOND ROW ---------- */
+
+.a6{
+
+    top:520px;
+    left:40px;
+
+}
+
+.a7{
+
+    top:520px;
+    left:250px;
+
+}
+
+.a8{
+
+    top:520px;
+    left:460px;
+
+}
+
+.a9{
+
+    top:520px;
+    left:1010px;
+
+    border:4px solid white;
+
+}
+
+/*==================================================
+  9. ANIMATION
+==================================================*/
+
+@keyframes albumFade{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(30px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+@keyframes floating{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-5px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* animation delay */
+
+.a1{
+    animation:albumFade .7s .05s forwards,
+              floating 5s ease-in-out infinite;
+}
+
+.a2{
+    animation:albumFade .7s .15s forwards,
+              floating 4s ease-in-out infinite;
+}
+
+.a3{
+    animation:albumFade .7s .25s forwards,
+              floating 5s ease-in-out infinite;
+}
+
+.a4{
+    animation:albumFade .7s .35s forwards,
+              floating 4s ease-in-out infinite;
+}
+
+.a5{
+    animation:albumFade .7s .45s forwards,
+              floating 5s ease-in-out infinite;
+}
+
+.a6{
+    animation:albumFade .7s .55s forwards,
+              floating 4s ease-in-out infinite;
+}
+
+.a7{
+    animation:albumFade .7s .65s forwards,
+              floating 5s ease-in-out infinite;
+}
+
+.a8{
+    animation:albumFade .7s .75s forwards,
+              floating 4s ease-in-out infinite;
+}
+
+.a9{
+    animation:albumFade .7s .85s forwards,
+              floating 5s ease-in-out infinite;
+}
+
+/*==================================================
+  PAGE FADE
+==================================================*/
+
+@keyframes pageFade{
+
+    from{
+
+        opacity:0;
+
+    }
+
+    to{
+
+        opacity:1;
+
+    }
+
+}
+
+/*==================================================
+  10. FRAME
+==================================================*/
+
+.wrapper::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:80px;
+    left:25px;
+
+    width:1130px;
+    height:650px;
+
+    border:2px solid rgba(0,0,0,.08);
+
+    pointer-events:none;
+
+}
+
+.wrapper::after{
+
+    content:"";
+
+    position:absolute;
+
+    right:345px;
+    top:320px;
+
+    width:18px;
+    height:18px;
+
+    border-radius:50%;
+
+    background:#333;
+
+}
+
+/*==================================================
+  11. DECORATION LINES
+==================================================*/
+
+.line{
+
+    position:absolute;
+
+    background:#222;
+
+    opacity:.6;
+
+}
+
+/* kiri */
+
+.h1{
+
+    width:220px;
+    height:2px;
+
+    left:55px;
+    top:345px;
+
+}
+
+.v1{
+
+    width:2px;
+    height:80px;
+
+    left:165px;
+    top:305px;
+
+}
+
+/* kanan */
+
+.h2{
+
+    width:220px;
+    height:2px;
+
+    right:90px;
+    top:330px;
+
+}
+
+.v2{
+
+    width:2px;
+    height:80px;
+
+    right:200px;
+    top:290px;
+
+}
+
+.right-line{
+
+    position:absolute;
+
+    right:70px;
+    top:365px;
+
+    width:170px;
+    height:2px;
+
+    background:#222;
+
+    opacity:.6;
+
+}
+
+/*==================================================
+  12. ARROWS
+==================================================*/
+
+.arrow{
+
+    position:absolute;
+
+    width:54px;
+    height:54px;
+
+    border-radius:50%;
+
+    background:white;
+
+    border:2px solid #111;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:22px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.18);
+
+    z-index:100;
+
+}
+
+.arrow:hover{
+
+    background:#111;
+
+    color:white;
+
+    transform:scale(1.1);
+
+}
+
+.arrow-left{
+
+    left:18px;
+    top:340px;
+
+}
+
+.arrow-right{
+
+    right:20px;
+    top:340px;
+
+}
+
+/*==================================================
+  13. DOWN ICON
+==================================================*/
+
+.album::after{
+
+    content:"▼";
+
+    position:absolute;
+
+    left:50%;
+    bottom:-30px;
+
+    transform:translateX(-50%);
+
+    width:32px;
+    height:32px;
+
+    border-radius:50%;
+
+    background:white;
+
+    border:2px solid #111;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:12px;
+
+    transition:.3s;
+
+}
+
+.album:hover::after{
+
+    background:#111;
+
+    color:white;
+
+}
+
+/*==================================================
+  14. INFO PANEL
+==================================================*/
+
+.info-panel{
+
+    position:absolute;
+
+    right:55px;
+    top:170px;
+
+    width:250px;
+
+    color:#222;
+
+}
+
+.info-panel h2{
+
+    font-size:42px;
+
+    margin-bottom:15px;
+
+    letter-spacing:2px;
+
+}
+
+.info-panel p{
+
+    font-size:18px;
+
+    color:#666;
+
+    line-height:1.7;
+
+}
+/*==================================================
+  15. FOOTER
+==================================================*/
+
+footer{
+
+    position:fixed;
+
+    bottom:0;
+    left:0;
+
+    width:100%;
+    height:45px;
+
+    background:rgba(60,15,10,.92);
+
+    color:#fff;
+
+    display:grid;
+
+    grid-template-columns:1fr auto 1fr;
+
+    align-items:center;
+
+    padding:0 25px;
+
+    z-index:500;
+
+}
+
+.copyright{
+
+    font-size:12px;
+
+    line-height:1.4;
+
+}
+
+.creator{
+
+    font-size:16px;
+
+    text-align:center;
+
+}
+
+#SNS{
+
+    justify-self:end;
+
+    display:flex;
+
+    gap:14px;
+
+}
+
+#SNS img{
+
+    width:28px;
+
+    opacity:.8;
+
+    transition:.3s;
+
+}
+
+#SNS img:hover{
+
+    opacity:1;
+
+    transform:translateY(-4px) scale(1.1);
+
+}
+
+/*==================================================
+  16. LOGO EFFECT
+==================================================*/
+
+.logo-back,
+.logo-menu{
+
+    transition:.35s;
+
+}
+
+.logo-back:hover,
+.logo-menu:hover{
+
+    transform:scale(1.08);
+
+}
+
+/*==================================================
+  17. AUDIO
+==================================================*/
+
+#audioBtn{
+
+    transition:.3s;
+
+}
+
+#audioBtn:hover{
+
+    transform:scale(1.08);
+
+    background:#5e40d4;
+
+}
+
+/*==================================================
+  18. GLOBAL
+==================================================*/
+
+*{
+
+    scroll-behavior:smooth;
+
+}
+
+img{
+
+    user-select:none;
+
+    -webkit-user-drag:none;
+
+}
+
+/*==================================================
+  19. RESPONSIVE
+==================================================*/
+
+@media (max-width:1600px){
+
+    .wrapper{
+
+        transform:scale(.90);
+        transform-origin:top left;
+
+    }
+
+}
+
+@media (max-width:1366px){
+
+    .wrapper{
+
+        transform:scale(.82);
+        transform-origin:top left;
+
+    }
+
+}
+
+@media (max-width:1280px){
+
+    .wrapper{
+
+        transform:scale(.75);
+        transform-origin:top left;
+
+    }
+
+}
